@@ -7,12 +7,22 @@ using JornadaMilhasV1.Validador;
 
 namespace JornadaMilhasV1.Modelos;
 
-public class TripOffer: Valid
+public class TripOffer : Valid
 {
+    private double discount;
+
     public int Id { get; set; }
-    public Route Route { get; set; } 
+    public Route Route { get; set; }
     public Period Period { get; set; }
     public double Price { get; set; }
+    public double Discount
+    {
+        get => discount;
+        set  {
+            discount = value;
+            Price -= discount;
+                }
+    }
 
 
     public TripOffer(Route route, Period period, double price)
@@ -33,10 +43,11 @@ public class TripOffer: Valid
         if (!Period.IsValid)
         {
             Errors.RegisterError(Period.Errors.Sumario);
-        } else if (Route == null || Period == null)
+        }
+        else if (Route == null || Period == null)
         {
             Errors.RegisterError("A oferta de viagem não possui rota ou período válidos.");
-        } 
+        }
         else if (Price <= 0)
         {
             Errors.RegisterError("O preço da oferta de viagem deve ser maior que zero.");
