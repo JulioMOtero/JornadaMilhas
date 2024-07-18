@@ -34,7 +34,7 @@ namespace JornadaMilhas.Test
 
 
         [Fact]
-        public void ReturnMaxDiscountWHenDiscountBiggerThenPRice()
+        public void ReturnMaxDiscountWHenDiscountBiggerThenPrice()
         {
             //arrange
 
@@ -47,12 +47,35 @@ namespace JornadaMilhas.Test
             TripOffer offer = new TripOffer(route, period, originalPrice);
 
             //act
-            //uses the discount to apply it on the price
+            //uses the discount to apply it on the price and if the discount is bigger then the price returns with max dicount 
             offer.Discount = discount;
 
             //assert
 
-            Assert.Equal(PriceWithDiscount, offer.Price);
+            Assert.Equal(PriceWithDiscount, offer.Price,0.001);
+
+        }
+
+        [Fact]
+        public void ReturnOriginalPriceWHenDiscountValueIsNegative()
+        {
+            //arrange
+
+            Route route = new Route("OriginTest", "DestinyTest");
+            Period period = new Period(new DateTime(2024, 2, 1), new DateTime(2024, 2, 5));
+            double originalPrice = 100.0;
+            double discount = -20.00;
+            
+
+            TripOffer offer = new TripOffer(route, period, originalPrice);
+
+            //act
+            //uses the discount to apply it on the price and if the discount is bigger then the price returns with max dicount 
+            offer.Discount = discount;
+
+            //assert
+
+            Assert.Equal(originalPrice, offer.Price, 0.001);
 
         }
     }

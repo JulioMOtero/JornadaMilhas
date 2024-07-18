@@ -15,13 +15,27 @@ public class TripOffer : Valid
     public Route Route { get; set; }
     public Period Period { get; set; }
     public double Price { get; set; }
+    public const double MaxDiscount = 0.7;
     public double Discount
     {
         get => discount;
-        set  {
+        set
+        {
             discount = value;
-            Price -= discount;
-                }
+            if(discount <= 0)
+            {
+                Price = Price;
+            }
+            else
+            if (discount >= Price)
+            {
+                Price *= (1- MaxDiscount);
+            }
+            else
+            {
+                Price -= discount;
+            }
+        }
     }
 
 
