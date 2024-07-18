@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using JornadaMilhasV1.Validador;
+
+namespace JornadaMilhasV1.Modelos;
+
+public class TripOffer: Valid
+{
+    public int Id { get; set; }
+    public Route Route { get; set; } 
+    public Period Period { get; set; }
+    public double Price { get; set; }
+
+
+    public TripOffer(Route route, Period period, double price)
+    {
+        Route = route;
+        Period = period;
+        Price = price;
+        Validate();
+    }
+
+    public override string ToString()
+    {
+        return $"Origem: {Route.Origin}, Destino: {Route.Destiny}, Data de Ida: {Period.InitialDate.ToShortDateString()}, Data de Volta: {Period.FinalDate.ToShortDateString()}, Preço: {Price:C}";
+    }
+
+    protected override void Validate()
+    {
+        if (!Period.IsValid)
+        {
+            Errors.RegisterError(Period.Errors.Sumario);
+        } else if (Route == null || Period == null)
+        {
+            Errors.RegisterError("A oferta de viagem não possui rota ou período válidos.");
+        } 
+        else if (Price <= 0)
+        {
+            Errors.RegisterError("O preço da oferta de viagem deve ser maior que zero.");
+        }
+    }
+}
