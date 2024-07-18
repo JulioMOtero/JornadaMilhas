@@ -40,9 +40,10 @@ namespace JornadaMilhas.Teste
             Route route = new Route("OriginTest", "DestinyTest");
             Period period = new Period(new DateTime(2024, 2, 1), new DateTime(2024, 2, 5));
             double price = -100.0;
-            //act
 
+            //act
             TripOffer offer = new TripOffer(route,period,price);
+
             //assert
             Assert.Contains("O preço da oferta de viagem deve ser maior que zero.",offer.Errors.Sumario);
 
