@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JornadaMilhas", "src\JornadaMilhasV1\JornadaMilhas.csproj", "{12ECD4A5-4B9C-4351-AC72-FA1675783986}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JornadaMilhas.Teste", "tests\JornadaMilhas.Teste\JornadaMilhas.Teste.csproj", "{A9A87E6D-4099-4CEF-95D8-D06F4E6749D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JornadaMilhas.Test", "tests\JornadaMilhas.Teste\JornadaMilhas.Test.csproj", "{A9A87E6D-4099-4CEF-95D8-D06F4E6749D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
