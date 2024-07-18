@@ -1,11 +1,12 @@
 using JornadaMilhasV1.Modelos;
+using JornadaMilhasV1.Validador;
 
 namespace JornadaMilhas.Teste
 {
-    public class TripOfferTest
+    public class TripOfferConstructorTest
     {
         [Fact]
-        public void TestingValidOffer()
+        public void ReturnsValidOfferWithValidData()
         {
             //arrange
             Route route = new Route("OriginTest", "DestinyTest");
@@ -13,12 +14,12 @@ namespace JornadaMilhas.Teste
             double price = 100.0;
             var validation = true;
             //act
-            TripOffer oferta = new TripOffer(route, period, price);
+            TripOffer offer = new TripOffer(route, period, price);
             //assert
-            Assert.Equal(validation,oferta.IsValid);
+            Assert.Equal(validation,offer.IsValid);
         }
         [Fact]
-        public void TestingValidOfferNullRoute()
+        public void ReturnsInvalidRouteOrPeriodErrorMessageWhenRouteIsNull()
         {
             //arrange
             Route route = null;
@@ -34,7 +35,7 @@ namespace JornadaMilhas.Teste
         }
 
         [Fact]
-        public void TestingNegativePrice()
+        public void ReturnsInvalidPriceErrorMessageWhenPriceIsLessThanZero()
         {
             //arrage
             Route route = new Route("OriginTest", "DestinyTest");
