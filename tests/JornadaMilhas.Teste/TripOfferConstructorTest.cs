@@ -17,9 +17,9 @@ namespace JornadaMilhas.Teste
             Route route = new Route(origin, destiny);
             Period period = new Period(DateTime.Parse(initialDate), DateTime.Parse(finalDate));
 
-
             //act
             TripOffer offer = new TripOffer(route, period, price);
+
             //assert
             Assert.Equal(validation, offer.IsValid);
         }
@@ -51,13 +51,27 @@ namespace JornadaMilhas.Teste
             Route route = new Route(origin, destiny);
             Period period = new Period(DateTime.Parse(initialDate), DateTime.Parse(finalDate));
 
-
             //act
             TripOffer offer = new TripOffer(route, period, price);
 
             //assert
             Assert.Equal(validation, offer.IsValid);
-            //Assert.Contains("O preço da oferta de viagem deve ser maior que zero.", offer.Errors.Sumario);
+        }
+
+        [Fact]
+        public void ReturnsAllErrorsMessagesFromValidateWhenPeriodAndPriceAreInvalid()
+        {
+            //arrange
+            int expectedNumberOfErrors=3;
+            Route route = null;
+            Period period = new Period(new DateTime(2024, 6, 1), new DateTime(2024, 5, 10));
+            double price = -100.0;
+
+            //act
+            TripOffer offer = new TripOffer(route, period,price);
+
+            //assert
+            Assert.Equal(expectedNumberOfErrors,offer.Errors.Count());
 
         }
     }

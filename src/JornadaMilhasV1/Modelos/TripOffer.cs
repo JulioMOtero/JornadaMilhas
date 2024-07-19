@@ -22,14 +22,14 @@ public class TripOffer : Valid
         set
         {
             discount = value;
-            if(discount <= 0)
+            if (discount <= 0)
             {
                 Price = Price;
             }
             else
             if (discount >= Price)
             {
-                Price *= (1- MaxDiscount);
+                Price *= (1 - MaxDiscount);
             }
             else
             {
@@ -58,11 +58,11 @@ public class TripOffer : Valid
         {
             Errors.RegisterError(Period.Errors.Sumario);
         }
-        else if (Route == null || Period == null)
+        if (Route == null || Period == null)
         {
             Errors.RegisterError("A oferta de viagem não possui rota ou período válidos.");
         }
-        else if (Price <= 0)
+        if (Price <= 0)
         {
             Errors.RegisterError("O preço da oferta de viagem deve ser maior que zero.");
         }
