@@ -16,18 +16,15 @@ public class TripOffer : Valid
     public Period Period { get; set; }
     public double Price { get; set; }
     public const double MaxDiscount = 0.7;
+    public bool Active { get; set; } = true;
     public double Discount
     {
         get => discount;
         set
         {
             discount = value;
-            if (discount <= 0)
-            {
-                Price = Price;
-            }
-            else
-            if (discount >= Price)
+            if (discount <=  0) { }
+            else if (discount >= Price)
             {
                 Price *= (1 - MaxDiscount);
             }
