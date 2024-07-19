@@ -65,6 +65,12 @@ public class GerenciadorDeOfertas
 
     }
 
+    public TripOffer? ReturnsMaxDiscount(Func<TripOffer,bool> filter) => TripOffer
+        .Where(filter)
+        .Where(o => o.Active)
+        .OrderBy(o => o.Price)
+        .FirstOrDefault();
+
 
     public void CarregarOfertas()
     {
