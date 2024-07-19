@@ -65,7 +65,7 @@ namespace JornadaMilhas.Teste
             int expectedNumberOfErrors=3;
             Route route = null;
             Period period = new Period(new DateTime(2024, 6, 1), new DateTime(2024, 5, 10));
-            double price = -100.0;
+            double price = -10;
 
             //act
             TripOffer offer = new TripOffer(route, period,price);

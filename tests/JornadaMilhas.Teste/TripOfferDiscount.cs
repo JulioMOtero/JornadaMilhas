@@ -33,21 +33,19 @@ namespace JornadaMilhas.Test
         }
 
 
-        [Fact]
-        public void ReturnMaxDiscountWHenDiscountBiggerThenPrice()
+        [Theory]
+        [InlineData(120.00, 30.00)]
+        [InlineData(100.00, 30.00)]
+        public void ReturnMaxDiscountWhenDiscountBiggerOrEqualstoThePrice( double discount, double PriceWithDiscount)
         {
             //arrange
-
             Route route = new Route("OriginTest", "DestinyTest");
             Period period = new Period(new DateTime(2024, 2, 1), new DateTime(2024, 2, 5));
             double originalPrice = 100.0;
-            double discount = 120.00;
-            double PriceWithDiscount = 30.00;
-
             TripOffer offer = new TripOffer(route, period, originalPrice);
 
             //act
-            //uses the discount to apply it on the price and if the discount is bigger then the price returns with max dicount 
+            //uses the discount to apply it to the price and if the discount is bigger then the price returns with max dicount 
             offer.Discount = discount;
 
             //assert
